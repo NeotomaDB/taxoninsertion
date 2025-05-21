@@ -82,7 +82,7 @@ class Taxonomy:
                 i.check_neotoma(dbname, check_all)
     def update_neotoma(self, commit:bool = False):
         assert self.neotoma['taxonid'] is not None, "To update a taxon in Neotoma you must have an existing taxonid."
-    def check_gbif(self, rank = None, family = None, kingdom = None, genus = None):
+    def check_gbif(self, rank:str = None, family:str = None, kingdom:str = None, genus:str = None):
         # We generate a hash to make sure things are stable/similar if we do a check.
         old_gbif = [hash(dumps(i['data'], sort_keys=True)) for i in self.external if i['source'] == 'gbif']
         name_check = species.name_backbone(name=self.neotoma['taxonname'], rank = rank, family = family, kingdom = kingdom, genus = genus)
@@ -111,7 +111,7 @@ class Taxonomy:
             nodes.append(i.list_neotoma())
         return nodes
 
-def tree_from_gbif(tax_to_parse, check_neotoma:bool = False):
+def tree_from_gbif(tax_to_parse, check_neotoma:bool = False)->Taxonomy:
     """_Generate a Taxonomy tree for the entire tree object._
 
     Args:
@@ -119,7 +119,7 @@ def tree_from_gbif(tax_to_parse, check_neotoma:bool = False):
         check_neotoma (bool, optional): _Should we validate the taxa against Neotoma?_. Defaults to False.
 
     Returns:
-        _type_: _description_
+        _Taxonomy_: _A Taxonomy object with the parsed GBIF data._
     """    
     assert type(tax_to_parse) is Taxonomy, "You must pass a taxonomy."
     assert any(['gbif' in i['source'] for i in tax_to_parse.external]), "You must have a GBIF reference in your Taxonomy object."

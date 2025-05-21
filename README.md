@@ -20,6 +20,22 @@ What the package does:
 
 ## Using this Repository
 
+Secrets to connect to the database are in an "ignored" file named `.env`. It should have the format:
+
+```bash
+DBAUTH={"host":"localhost","port":5432,"user":"postgres","password":"postgres","dbname":"neotoma"}
+```
+
 The repository uses the `uv` package manager to help manage dependencies and ensure a stable development platform. To use this repository, first clone the repository locally, and then, run `uv init` to install all neccessary packages. Once the packages are installed, the script `testing_beetles.py` can be run using `uv run testing_beetles.py`.
 
 The script may be slow to run because it must interact with the Neotoma database (and could interact with GBIF and NCBI if wanted).
+
+## Current Expected Input and Output
+
+The script in this repository is designed to work with a CSV file provided by the [BUGSCep](https://bugscep.com/) research data group. That CSV has the format:
+
+```csv
+CODE,FAMILY,GENUS,SPECIES,AUTHORITY,epithet,neotoma_path,gbifid,ncbi_id,taxonRank,taxonomicStatus,ncbi_lineage_names
+```
+
+The `testing_beetles.py` file parses this document row by row and returns a similar CSV, with the additional columns `familyid`, `genusid`, and `speciesid`, with the associated Neotoma taxon IDs.
