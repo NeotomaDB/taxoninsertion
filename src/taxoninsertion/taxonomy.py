@@ -26,6 +26,8 @@ class Taxonomy:
                         'notes':notes}  
         self.external = []
         self.children = []
+    def __repr__(self):
+        pass
     def post_neotoma(self, dbname:str = 'neotoma'):
         load_dotenv()
         CONN_STRING = loads(getenv("DBAUTH"))
@@ -45,6 +47,7 @@ class Taxonomy:
         return self.children
     def add_node(self, taxon):
         assert type(taxon) is Taxonomy, "You must pass a Taxonomy object."
+        taxon.neotoma['highertaxonid'] = self.neotoma['taxonid']
         self.children.append(taxon)
     def check_neotoma(self, dbname:str = 'neotoma', check_all:bool = True):
         assert any([i is None for i in self.neotoma.values()]) is not None, "All keys are None, assign values first."

@@ -8,3 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+
+validated_names.csv
+
+.env
+
+*.csv#
