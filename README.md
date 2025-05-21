@@ -1,6 +1,8 @@
 [![NSF-2410965](https://img.shields.io/badge/NSF-2410965-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2410965&HistoricalAwards=false)
 [![NSF-2410961](https://img.shields.io/badge/NSF-2410961-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2410961&HistoricalAwards=false)
 
+[![DOI](https://zenodo.org/badge/939668660.svg)](https://doi.org/10.5281/zenodo.15485153)
+
 # Taxon Insertion in Neotoma
 
 This is a package intended to help support both bulk and individual taxon insertion in Neotoma.
